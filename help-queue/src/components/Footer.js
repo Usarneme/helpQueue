@@ -1,6 +1,13 @@
 function Footer() {
+  const footerStyle = {
+    backgroundColor: 'rgb(76, 195, 255)',
+    marginBottom: '0px'
+  };
+
   return (
-    <h1>Footer</h1>
+    <div style={footerStyle}>
+      <h3>Footer</h3>
+    </div>
   )
 }
 
