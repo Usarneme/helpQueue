@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Kanban from './Kanban';
 import Ticket from './Ticket';
 
 class Tickets extends Component {
@@ -8,19 +9,23 @@ class Tickets extends Component {
       tickets: [
         {
           title: "Ticket one",
-          description: "This is the first ticket"
+          description: "This is the first ticket",
+          status: "Todo"
         },
         {
           title: "Ticket two",
-          description: "This is the second ticket"
+          description: "This is the second ticket",
+          status: "Todo"
         },
         {
           title: "Create Kanban",
-          description: "Generate the kanban board"
+          description: "Generate the kanban board",
+          status: "Todo"
         },
         {
           title: "Do styling",
-          description: "Make it pretty"
+          description: "Make it pretty",
+          status: "Todo"
         }
       ]
     }
@@ -39,8 +44,9 @@ class Tickets extends Component {
       <React.Fragment>
         <h1>Current Tickets:</h1>
         <div style={ticketsStyles} >
-          {this.state.tickets.map(ticket => <Ticket title={ticket.title} description={ticket.description} />)}
+          {this.state.tickets.map((ticket, index) => <Ticket key={index} title={ticket.title} description={ticket.description} />)}
         </div>
+        <Kanban tickets={this.state.tickets} />
       </React.Fragment>
     )
   }

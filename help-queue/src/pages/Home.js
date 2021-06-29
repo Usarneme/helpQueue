@@ -1,6 +1,5 @@
 import Header from './../components/Header';
 import Footer from './../components/Footer';
-import Kanban from './../components/Kanban';
 import Navbar from './../components/Navbar';
 import Tickets from './../components/Tickets';
 
@@ -10,7 +9,6 @@ function Home() {
       <Navbar />
       <Header  />
       <Tickets />
-      <Kanban />
       <Footer />
     </div>
   );

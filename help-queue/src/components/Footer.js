@@ -1,7 +1,8 @@
 function Footer() {
   const footerStyle = {
     backgroundColor: 'rgb(76, 195, 255)',
-    marginBottom: '0px'
+    marginTop: '220px',
+    padding: '10px'
   };
 
   return (

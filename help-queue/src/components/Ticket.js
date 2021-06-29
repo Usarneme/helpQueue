@@ -11,7 +11,8 @@ function Ticket(props) {
 
 Ticket.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired
+  description: PropTypes.string.isRequired,
+  status: PropTypes.string
 }
 
 export default Ticket;
