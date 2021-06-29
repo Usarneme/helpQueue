@@ -34,15 +34,16 @@ class Tickets extends Component {
   render() {
 
     const ticketsStyles = {
-      display: 'grid',
-      gridGap: '10px',
+      display: 'flex',
       color: 'green',
-      gridTemplateColumns: 'repeat(2, 1fr)'
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'center'
     }
 
     return (
       <React.Fragment>
-        <h1>Current Tickets:</h1>
+        <h3>Current Tickets:</h3>
         <div style={ticketsStyles} >
           {this.state.tickets.map((ticket, index) => <Ticket key={index} title={ticket.title} description={ticket.description} />)}
         </div>
