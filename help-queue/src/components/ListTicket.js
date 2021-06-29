@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-function Ticket(props) {
+function ListTicket(props) {
   return (
     <div style={{ flex: '1 1 100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <h4 style={{ padding: '2px', margin: '2px' }} >{props.title}</h4>
@@ -10,10 +10,10 @@ function Ticket(props) {
   );
 }
 
-Ticket.propTypes = {
+ListTicket.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   status: PropTypes.string
 }
 
-export default Ticket;
+export default ListTicket;

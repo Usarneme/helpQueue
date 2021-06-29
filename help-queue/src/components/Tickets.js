@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { v4 as uuid } from 'uuid';
 import Kanban from './Kanban';
-import Ticket from './Ticket';
+import ListTicket from './ListTicket';
 
 class Tickets extends Component {
   constructor(props) {
@@ -10,25 +11,45 @@ class Tickets extends Component {
         {
           title: "Ticket one",
           description: "This is the first ticket",
-          status: "Todo"
+          status: "InProgress",
+          id: uuid()
         },
         {
           title: "Ticket two",
           description: "This is the second ticket",
-          status: "Todo"
+          status: "Todo",
+          id: uuid()
         },
         {
           title: "Create Kanban",
           description: "Generate the kanban board",
-          status: "Todo"
+          status: "Done",
+          id: uuid()
         },
         {
           title: "Do styling",
           description: "Make it pretty",
-          status: "Todo"
+          status: "Todo",
+          id: uuid()
         }
       ]
     }
+  }
+
+  changeTicketStatus = (ticketId, newStatus) => {
+    // loop thru the tickets array and find the one that matches the id
+    const newTicketsArray = this.state.tickets.map(ticket => {
+      if (ticket.id === ticketId) {
+        // change the status of that ONE ELEMENT
+        const newTicket = {...ticket};
+        newTicket.status = newStatus;
+        return newTicket;
+      } else {
+        return ticket;
+      }
+    });
+    // update the state with the new tickets array
+    this.setState({ tickets: newTicketsArray });
   }
 
   render() {
@@ -43,11 +64,11 @@ class Tickets extends Component {
 
     return (
       <React.Fragment>
-        <h3>Current Tickets:</h3>
+        <h3>All Tickets:</h3>
         <div style={ticketsStyles} >
-          {this.state.tickets.map((ticket, index) => <Ticket key={index} title={ticket.title} description={ticket.description} />)}
+          {this.state.tickets.map(ticket => <ListTicket key={ticket.id} title={ticket.title} description={ticket.description} />)}
         </div>
-        <Kanban tickets={this.state.tickets} />
+        <Kanban tickets={this.state.tickets} changeTicketStatus={this.changeTicketStatus} />
       </React.Fragment>
     )
   }

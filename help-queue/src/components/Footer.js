@@ -3,7 +3,7 @@ import { ImTicket } from 'react-icons/im';
 function Footer() {
   const footerStyle = {
     backgroundColor: 'rgb(76, 195, 255)',
-    marginTop: '220px',
+    marginTop: '120px',
     padding: '10px',
     display: 'flex',
     alignItems: 'center'
