@@ -19,8 +19,8 @@ function KanbanTicket(props) {
       <h5>{props.title}</h5>
       <p style={{ padding: '6px 6px 12px' }}>{props.description}</p>
       <p>
-        <button type="button" style={{ padding: '9px', marginTop: '10px' }} onClick={() => props.changeTicketStatus(props.id, previousLevel)}><ImArrowLeft /></button>
-        <button type="button" style={{ padding: '9px', marginTop: '10px' }} onClick={() => props.changeTicketStatus(props.id, nextLevel)}><ImArrowRight /></button>
+        <button type="button" style={{ padding: '9px', marginTop: '10px' }} onClick={() => props.changeTicketStatus(props, previousLevel)}><ImArrowLeft /></button>
+        <button type="button" style={{ padding: '9px', marginTop: '10px' }} onClick={() => props.changeTicketStatus(props, nextLevel)}><ImArrowRight /></button>
       </p>
     </div>
   );

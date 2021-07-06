@@ -5,30 +5,23 @@ import ListTicket from './ListTicket';
 import { connect } from 'react-redux';
 
 class Tickets extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-
+  changeTicketStatus = (ticket, newStatus) => {
+    const { id, title, description } = ticket;
+    console.log("CHANGING TICKET", ticket, newStatus)
+    const { dispatch } = this.props;
+    const action = {
+      type: "UPDATE_TICKET",
+      id: id,
+      title: title,
+      description: description,
+      status: newStatus
     }
-  }
-
-  changeTicketStatus = (ticketId, newStatus) => {
-    // loop thru the tickets array and find the one that matches the id
-    const newTicketsArray = this.state.tickets.map(ticket => {
-      if (ticket.id === ticketId) {
-        // change the status of that ONE ELEMENT
-        const newTicket = {...ticket};
-        newTicket.status = newStatus;
-        return newTicket;
-      } else {
-        return ticket;
-      }
-    });
-    // update the state with the new tickets array
-    this.setState({ tickets: newTicketsArray });
+    const result = dispatch(action)
+    console.log("AFTER DISPATCH", result)
   }
 
   render() {
+    console.log("TICKETS COMPONENT< props: ",this.props)
 
     const ticketsStyles = {
       display: 'flex',
@@ -52,7 +45,7 @@ class Tickets extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    tickets: state.tickets,
+    tickets: state
   };
 };
 
