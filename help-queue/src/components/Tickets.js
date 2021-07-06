@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
-// import { v4 as uuid } from 'uuid';
-import Kanban from './Kanban';
-import ListTicket from './ListTicket';
+import { v4 as uuid } from 'uuid';
 import { connect } from 'react-redux';
 
+import Kanban from './Kanban';
+import NewTicketForm from './NewTicketForm';
+
 class Tickets extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      newTicketFormShowing: false
+    }
+  }
+
   changeTicketStatus = (ticket, newStatus) => {
-    const { id, title, description } = ticket;
-    console.log("CHANGING TICKET", ticket, newStatus)
     const { dispatch } = this.props;
+    const { id, title, description } = ticket;
     const action = {
       type: "UPDATE_TICKET",
       id: id,
@@ -16,27 +23,39 @@ class Tickets extends Component {
       description: description,
       status: newStatus
     }
-    const result = dispatch(action)
-    console.log("AFTER DISPATCH", result)
+    dispatch(action)
+  }
+
+  addNewTicket = (title, description) => {
+    const id = uuid();
+    const { dispatch } = this.props;
+    const action = {
+      type: "ADD_TICKET",
+      id: id,
+      title: title,
+      description: description,
+      status: "Todo"
+    }
+    dispatch(action)
+  }
+
+  handleShowNewTicketFormButtonClick = () => {
+    this.setState({ newTicketFormShowing: !this.state.newTicketFormShowing })
+    // this.setState(prevState => ({ newTicketFormShowing: !prevState.newTicketFormShowing }))
+  }
+
+  onNewTicketCreation = (title, description) => {
+    console.log("onNewTicketCreation", title, description)
+    this.addNewTicket(title, description)
   }
 
   render() {
-    console.log("TICKETS COMPONENT< props: ",this.props)
-
-    const ticketsStyles = {
-      display: 'flex',
-      color: 'green',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      justifyContent: 'center'
-    }
-
     return (
       <React.Fragment>
-        <h3>All Tickets:</h3>
-        <div style={ticketsStyles} >
-          {Object.values(this.props.tickets).map(ticket => <ListTicket key={ticket.id} title={ticket.title} description={ticket.description} />)}
-        </div>
+        { this.state.newTicketFormShowing ? <NewTicketForm onNewTicketCreation={this.onNewTicketCreation} /> : null }
+        <button onClick={() => this.handleShowNewTicketFormButtonClick()} >
+          { this.state.newTicketFormShowing ? "Cancel New Ticket" : "Add New Ticket" }
+        </button>
         <Kanban tickets={this.props.tickets} changeTicketStatus={this.changeTicketStatus} />
       </React.Fragment>
     )
