@@ -1,38 +1,14 @@
 import React, { Component } from 'react';
-import { v4 as uuid } from 'uuid';
+// import { v4 as uuid } from 'uuid';
 import Kanban from './Kanban';
 import ListTicket from './ListTicket';
+import { connect } from 'react-redux';
 
 class Tickets extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tickets: [
-        {
-          title: "Ticket one",
-          description: "This is the first ticket",
-          status: "InProgress",
-          id: uuid()
-        },
-        {
-          title: "Ticket two",
-          description: "This is the second ticket",
-          status: "Todo",
-          id: uuid()
-        },
-        {
-          title: "Create Kanban",
-          description: "Generate the kanban board",
-          status: "Done",
-          id: uuid()
-        },
-        {
-          title: "Do styling",
-          description: "Make it pretty",
-          status: "Todo",
-          id: uuid()
-        }
-      ]
+
     }
   }
 
@@ -66,12 +42,20 @@ class Tickets extends Component {
       <React.Fragment>
         <h3>All Tickets:</h3>
         <div style={ticketsStyles} >
-          {this.state.tickets.map(ticket => <ListTicket key={ticket.id} title={ticket.title} description={ticket.description} />)}
+          {Object.values(this.props.tickets).map(ticket => <ListTicket key={ticket.id} title={ticket.title} description={ticket.description} />)}
         </div>
-        <Kanban tickets={this.state.tickets} changeTicketStatus={this.changeTicketStatus} />
+        <Kanban tickets={this.props.tickets} changeTicketStatus={this.changeTicketStatus} />
       </React.Fragment>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    tickets: state.tickets,
+  };
+};
+
+Tickets = connect(mapStateToProps)(Tickets);
 
 export default Tickets;

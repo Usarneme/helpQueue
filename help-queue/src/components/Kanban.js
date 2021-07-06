@@ -20,7 +20,7 @@ function Kanban(props) {
         <div style={kanbanBoardStyles}>
           <label style={{ borderBottom: '1px solid black', marginBottom: '8px' }}><SiTodoist /> TODO</label>
           <div style={{ padding: '8px 2px' }}>
-            {props.tickets.map(ticket => (ticket.status === "Todo") ?
+            {Object.values(props.tickets).map(ticket => (ticket.status === "Todo") ?
               (
                 <KanbanTicket
                   key={ticket.id}
@@ -38,7 +38,7 @@ function Kanban(props) {
         <div style={kanbanBoardStyles}>
           <label style={{ borderBottom: '1px solid black', marginBottom: '8px' }}><GiProgression /> In Progress</label>
           <div style={{ padding: '8px 2px' }}>
-            {props.tickets.map(ticket => (ticket.status === "InProgress") ?
+            {Object.values(props.tickets).map(ticket => (ticket.status === "InProgress") ?
               (
                 <KanbanTicket
                   key={ticket.id}
@@ -56,7 +56,7 @@ function Kanban(props) {
         <div style={kanbanBoardStyles}>
           <label style={{ borderBottom: '1px solid black', marginBottom: '8px' }}><AiOutlineFileDone /> Done</label>
           <div style={{ padding: '8px 2px' }}>
-            {props.tickets.map(ticket => (ticket.status === "Done") ?
+            {Object.values(props.tickets).map(ticket => (ticket.status === "Done") ?
               (
                 <KanbanTicket
                   key={ticket.id}
@@ -76,7 +76,7 @@ function Kanban(props) {
 }
 
 Kanban.propTypes = {
-  tickets: PropTypes.array.isRequired,
+  tickets: PropTypes.object.isRequired,
   changeTicketStatus: PropTypes.func.isRequired
 }
 

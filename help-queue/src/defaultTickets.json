@@ -1,0 +1,32 @@
+{
+  "tickets": {
+    "18a249a5-6867-42d5-9945-262022f9f45e":
+      {
+        "title": "Ticket one",
+        "description": "This is the first ticket",
+        "status": "InProgress",
+        "id": "18a249a5-6867-42d5-9945-262022f9f45e"
+      },
+    "18a249a5-6867-42d5-9945-262022f9f45f":
+      {
+        "title": "Ticket two",
+        "description": "This is the second ticket",
+        "status": "Todo",
+        "id": "18a249a5-6867-42d5-9945-262022f9f45f"
+      },
+    "18a249a5-6867-42d5-9945-262022f9f45g":
+      {
+        "title": "Create Kanban",
+        "description": "Generate the kanban board",
+        "status": "Done",
+        "id": "18a249a5-6867-42d5-9945-262022f9f45g"
+      },
+    "18a249a5-6867-42d5-9945-262022f9f45h":
+      {
+        "title": "Do styling",
+        "description": "Make it pretty",
+        "status": "Todo",
+        "id": "18a249a5-6867-42d5-9945-262022f9f45h"
+      }
+  }
+}
