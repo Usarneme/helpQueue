@@ -13,8 +13,6 @@ function Kanban(props) {
     background: 'rgba(255,255,255,0.25)'
   }
 
-  console.log("KANBAN COMPONENT props:", props)
-
   return (
     <div style={{ minHeight: '20vh' }}>
       <h3 style={{ marginTop: '42px' }}>Kanban</h3>
@@ -31,6 +29,7 @@ function Kanban(props) {
                   title={ticket.title}
                   description={ticket.description}
                   changeTicketStatus={props.changeTicketStatus}
+                  deleteTicket={props.deleteTicket}
                 />
               ) : null
             )}
@@ -49,6 +48,7 @@ function Kanban(props) {
                   title={ticket.title}
                   description={ticket.description}
                   changeTicketStatus={props.changeTicketStatus}
+                  deleteTicket={props.deleteTicket}
                 />
               ) : null
             )}
@@ -67,6 +67,7 @@ function Kanban(props) {
                   title={ticket.title}
                   description={ticket.description}
                   changeTicketStatus={props.changeTicketStatus}
+                  deleteTicket={props.deleteTicket}
                 />
               ) : null
             )}
@@ -79,7 +80,8 @@ function Kanban(props) {
 
 Kanban.propTypes = {
   tickets: PropTypes.object.isRequired,
-  changeTicketStatus: PropTypes.func.isRequired
+  changeTicketStatus: PropTypes.func.isRequired,
+  deleteTicket: PropTypes.func.isRequired
 }
 
 export default Kanban;

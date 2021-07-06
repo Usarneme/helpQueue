@@ -13,19 +13,6 @@ class Tickets extends Component {
     }
   }
 
-  changeTicketStatus = (ticket, newStatus) => {
-    const { dispatch } = this.props;
-    const { id, title, description } = ticket;
-    const action = {
-      type: "UPDATE_TICKET",
-      id: id,
-      title: title,
-      description: description,
-      status: newStatus
-    }
-    dispatch(action)
-  }
-
   addNewTicket = (title, description) => {
     const id = uuid();
     const { dispatch } = this.props;
@@ -39,24 +26,44 @@ class Tickets extends Component {
     dispatch(action)
   }
 
+  changeTicketStatus = (ticket, newStatus) => {
+    const { dispatch } = this.props;
+    const { id, title, description } = ticket;
+    const action = {
+      type: "UPDATE_TICKET",
+      id: id,
+      title: title,
+      description: description,
+      status: newStatus
+    }
+    dispatch(action)
+  }
+
+  deleteTicket = (id) => {
+    const { dispatch } = this.props;
+    const action = {
+      type: "DELETE_TICKET",
+      id: id
+    }
+    dispatch(action)
+  }
+
   handleShowNewTicketFormButtonClick = () => {
     this.setState({ newTicketFormShowing: !this.state.newTicketFormShowing })
     // this.setState(prevState => ({ newTicketFormShowing: !prevState.newTicketFormShowing }))
   }
 
-  onNewTicketCreation = (title, description) => {
-    console.log("onNewTicketCreation", title, description)
-    this.addNewTicket(title, description)
-  }
-
   render() {
     return (
       <React.Fragment>
-        { this.state.newTicketFormShowing ? <NewTicketForm onNewTicketCreation={this.onNewTicketCreation} /> : null }
+        { this.state.newTicketFormShowing ? <NewTicketForm onNewTicketCreation={this.addNewTicket} /> : null }
         <button onClick={() => this.handleShowNewTicketFormButtonClick()} >
           { this.state.newTicketFormShowing ? "Cancel New Ticket" : "Add New Ticket" }
         </button>
-        <Kanban tickets={this.props.tickets} changeTicketStatus={this.changeTicketStatus} />
+        <Kanban
+          tickets={this.props.tickets}
+          changeTicketStatus={this.changeTicketStatus}
+          deleteTicket={this.deleteTicket} />
       </React.Fragment>
     )
   }

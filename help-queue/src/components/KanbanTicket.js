@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import { ImArrowRight } from 'react-icons/im';
-import { ImArrowLeft } from 'react-icons/im';
+import { ImArrowRight, ImArrowLeft, ImCancelCircle } from 'react-icons/im';
 
 function KanbanTicket(props) {
   const kanbanCardStyles = {
@@ -8,7 +7,27 @@ function KanbanTicket(props) {
     padding: '4px',
     border: '1px solid black',
     borderRadius: '15px',
+    position: 'relative',
     background: props.status === 'Todo' ? 'rgba(0,0,0,0.15)' : props.status === 'InProgress' ? 'green' : 'orange'
+  }
+
+  const deleteButtonStyles = {
+    position: 'absolute',
+    top: '4px',
+    right: '8px',
+    width: '20px',
+    height: '20px',
+    borderRadius: '50%',
+    margin: '0',
+    padding: '0',
+    backgroundColor: 'rgba(0,0,0,0)',
+    cursor: 'pointer'
+  }
+
+  const changeButtonStyles = {
+    padding: '9px',
+    marginTop: '10px',
+    cursor: 'pointer'
   }
 
   const nextLevel = (props.status === 'Todo') ? 'InProgress' : 'Done';
@@ -16,11 +35,22 @@ function KanbanTicket(props) {
 
   return (
     <div style={kanbanCardStyles}>
+      <ImCancelCircle type="button" style={deleteButtonStyles} onClick={() => props.deleteTicket(props.id)} />
       <h5>{props.title}</h5>
       <p style={{ padding: '6px 6px 12px' }}>{props.description}</p>
       <p>
-        <button type="button" style={{ padding: '9px', marginTop: '10px' }} onClick={() => props.changeTicketStatus(props, previousLevel)}><ImArrowLeft /></button>
-        <button type="button" style={{ padding: '9px', marginTop: '10px' }} onClick={() => props.changeTicketStatus(props, nextLevel)}><ImArrowRight /></button>
+        <button
+          type="button"
+          style={changeButtonStyles}
+          onClick={() => props.changeTicketStatus(props, previousLevel)}>
+            <ImArrowLeft />
+        </button>
+        <button
+          type="button"
+          style={changeButtonStyles}
+          onClick={() => props.changeTicketStatus(props, nextLevel)}>
+            <ImArrowRight />
+        </button>
       </p>
     </div>
   );
@@ -29,6 +59,7 @@ function KanbanTicket(props) {
 KanbanTicket.propTypes = {
   description: PropTypes.string.isRequired,
   changeTicketStatus: PropTypes.func.isRequired,
+  deleteTicket: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired
