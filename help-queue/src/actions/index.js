@@ -1,0 +1,5 @@
+module.exports = {
+  ADD: 'ADD_TICKET',
+  UPDATE: 'UPDATE_TICKET',
+  DELETE: 'DELETE_TICKET'
+}

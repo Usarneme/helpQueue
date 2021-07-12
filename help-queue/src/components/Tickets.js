@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import Kanban from './Kanban';
 import NewTicketForm from './NewTicketForm';
+import { ADD, UPDATE, DELETE } from './../actions/index'
 
 class Tickets extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class Tickets extends Component {
     const id = uuid();
     const { dispatch } = this.props;
     const action = {
-      type: "ADD_TICKET",
+      type: ADD,
       id: id,
       title: title,
       description: description,
@@ -30,7 +31,7 @@ class Tickets extends Component {
     const { dispatch } = this.props;
     const { id, title, description } = ticket;
     const action = {
-      type: "UPDATE_TICKET",
+      type: UPDATE,
       id: id,
       title: title,
       description: description,
@@ -42,7 +43,7 @@ class Tickets extends Component {
   deleteTicket = (id) => {
     const { dispatch } = this.props;
     const action = {
-      type: "DELETE_TICKET",
+      type: DELETE,
       id: id
     }
     dispatch(action)

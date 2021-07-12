@@ -1,14 +1,8 @@
-const defaultState = require('./../defaultTickets.json');
-
-const reducerActions = {
-  ADD: 'ADD_TICKET',
-  UPDATE: 'UPDATE_TICKET',
-  DELETE: 'DELETE_TICKET'
-}
+import defaultState from './../defaultTickets.json'
+import { ADD, UPDATE, DELETE } from './../actions/index.js'
 
 const helpQueueReducer = (state = defaultState, action) => {
   const { title, description, status, id } = action;
-  const { ADD, UPDATE, DELETE } = reducerActions;
   switch (action.type) {
     case ADD:
     case UPDATE:
