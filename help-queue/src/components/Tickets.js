@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { v4 as uuid } from 'uuid';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { v4 as uuid } from 'uuid'
+import { withFirestore } from 'react-redux-firebase'
 
-import Kanban from './Kanban';
-import NewTicketForm from './NewTicketForm';
+import Kanban from './Kanban'
+import NewTicketForm from './NewTicketForm'
 import { ADD, UPDATE, DELETE } from './../actions/index'
 
 class Tickets extends Component {
@@ -14,8 +14,9 @@ class Tickets extends Component {
     }
   }
 
+  // DEPRECATED after introduction of Firebase Hook in NewForm component
   addNewTicket = (title, description) => {
-    const id = uuid();
+    const id = uuid()
     const { dispatch } = this.props;
     const action = {
       type: ADD,
@@ -27,17 +28,18 @@ class Tickets extends Component {
     dispatch(action)
   }
 
+  // DEPRECATED - replaced with useFirestore hook in ticket component
   changeTicketStatus = (ticket, newStatus) => {
-    const { dispatch } = this.props;
-    const { id, title, description } = ticket;
-    const action = {
-      type: UPDATE,
-      id: id,
-      title: title,
-      description: description,
-      status: newStatus
-    }
-    dispatch(action)
+    // const { dispatch } = this.props;
+    // const { id, title, description } = ticket;
+    // const action = {
+    //   type: UPDATE,
+    //   id: id,
+    //   title: title,
+    //   description: description,
+    //   status: newStatus
+    // }
+    // dispatch(action)
   }
 
   deleteTicket = (id) => {
@@ -62,7 +64,6 @@ class Tickets extends Component {
           { this.state.newTicketFormShowing ? "Cancel New Ticket" : "Add New Ticket" }
         </button>
         <Kanban
-          tickets={this.props.tickets}
           changeTicketStatus={this.changeTicketStatus}
           deleteTicket={this.deleteTicket} />
       </React.Fragment>
@@ -70,12 +71,6 @@ class Tickets extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    tickets: state
-  };
-};
+Tickets = withFirestore(Tickets)
 
-Tickets = connect(mapStateToProps)(Tickets);
-
-export default Tickets;
+export default Tickets

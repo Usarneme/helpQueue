@@ -1,5 +1,6 @@
-import PropTypes from 'prop-types';
-import { ImArrowRight, ImArrowLeft, ImCancelCircle } from 'react-icons/im';
+import PropTypes from 'prop-types'
+import { ImArrowRight, ImArrowLeft, ImCancelCircle } from 'react-icons/im'
+import { useFirestore } from 'react-redux-firebase'
 
 function KanbanTicket(props) {
   const kanbanCardStyles = {
@@ -30,8 +31,9 @@ function KanbanTicket(props) {
     cursor: 'pointer'
   }
 
-  const nextLevel = (props.status === 'Todo') ? 'InProgress' : 'Done';
-  const previousLevel = (props.status === 'Done') ? 'InProgress' : 'Todo';
+  const nextLevel = (props.status === 'Todo') ? 'InProgress' : 'Done'
+  const previousLevel = (props.status === 'Done') ? 'InProgress' : 'Todo'
+  const firestore = useFirestore()
 
   return (
     <div style={kanbanCardStyles}>
@@ -42,13 +44,13 @@ function KanbanTicket(props) {
         <button
           type="button"
           style={changeButtonStyles}
-          onClick={() => props.changeTicketStatus(props, previousLevel)}>
+          onClick={() => firestore.update({ collection: 'tickets', doc: props.id }, { status: previousLevel })} >
             <ImArrowLeft />
         </button>
         <button
           type="button"
           style={changeButtonStyles}
-          onClick={() => props.changeTicketStatus(props, nextLevel)}>
+          onClick={() => firestore.update({ collection: 'tickets', doc: props.id }, { status: nextLevel })} >
             <ImArrowRight />
         </button>
       </p>
@@ -58,11 +60,10 @@ function KanbanTicket(props) {
 
 KanbanTicket.propTypes = {
   description: PropTypes.string.isRequired,
-  changeTicketStatus: PropTypes.func.isRequired,
   deleteTicket: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired
 }
 
-export default KanbanTicket;
+export default KanbanTicket
