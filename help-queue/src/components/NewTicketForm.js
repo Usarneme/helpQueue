@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 import { useFirestore } from 'react-redux-firebase'
 
-function NewTicketForm(props) {
+function NewTicketForm() {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
 
@@ -10,7 +9,6 @@ function NewTicketForm(props) {
 
   const formSubmissionHandler = event => {
     event.preventDefault()
-    // props.onNewTicketCreation(title, description)
     firestore.collection('tickets').add({
       title: title,
       description: description,
@@ -37,10 +35,6 @@ function NewTicketForm(props) {
       <button type="submit">Add new ticket</button>
     </form>
   )
-}
-
-NewTicketForm.prototype = {
-  onNewTicketCreation: PropTypes.func
 }
 
 export default NewTicketForm

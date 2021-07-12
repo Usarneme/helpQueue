@@ -37,7 +37,7 @@ function KanbanTicket(props) {
 
   return (
     <div style={kanbanCardStyles}>
-      <ImCancelCircle type="button" style={deleteButtonStyles} onClick={() => props.deleteTicket(props.id)} />
+      <ImCancelCircle type="button" style={deleteButtonStyles} onClick={() => firestore.delete({collection: 'tickets', doc: props.id})} />
       <h5>{props.title}</h5>
       <p style={{ padding: '6px 6px 12px' }}>{props.description}</p>
       <p>
@@ -60,7 +60,6 @@ function KanbanTicket(props) {
 
 KanbanTicket.propTypes = {
   description: PropTypes.string.isRequired,
-  deleteTicket: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired

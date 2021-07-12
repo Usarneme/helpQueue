@@ -4,12 +4,9 @@ import { withFirestore } from 'react-redux-firebase'
 import Kanban from './Kanban'
 import NewTicketForm from './NewTicketForm'
 
-function Tickets(props) {
+function Tickets() {
   const [newTicketFormShowing, showNewTicketForm] = useState(false)
-
-  const handleShowNewTicketFormButtonClick = () => {
-    showNewTicketForm(!newTicketFormShowing)
-  }
+  const handleShowNewTicketFormButtonClick = () => showNewTicketForm(!newTicketFormShowing)
 
   return (
     <React.Fragment>

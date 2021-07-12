@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 // Hook for connecting Firebase+Redux for getting real-time data updates
 import { useSelector } from 'react-redux'
 import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
@@ -7,6 +7,7 @@ import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 import { SiTodoist } from 'react-icons/si'
 import { GiProgression } from 'react-icons/gi'
 import { AiOutlineFileDone } from 'react-icons/ai'
+
 import KanbanTicket from './KanbanTicket'
 
 function Kanban(props) {
@@ -40,8 +41,6 @@ function Kanban(props) {
                   status={ticket.status}
                   title={ticket.title}
                   description={ticket.description}
-                  changeTicketStatus={props.changeTicketStatus}
-                  deleteTicket={props.deleteTicket}
                 />
               ) : null
             )}
@@ -59,8 +58,6 @@ function Kanban(props) {
                   status={ticket.status}
                   title={ticket.title}
                   description={ticket.description}
-                  changeTicketStatus={props.changeTicketStatus}
-                  deleteTicket={props.deleteTicket}
                 />
               ) : null
             )}
@@ -78,8 +75,6 @@ function Kanban(props) {
                   status={ticket.status}
                   title={ticket.title}
                   description={ticket.description}
-                  changeTicketStatus={props.changeTicketStatus}
-                  deleteTicket={props.deleteTicket}
                 />
               ) : null
             )}
@@ -95,12 +90,6 @@ function Kanban(props) {
       </React.Fragment>
     )
   }
-}
-
-Kanban.propTypes = {
-  // tickets: PropTypes.object.isRequired,
-  changeTicketStatus: PropTypes.func.isRequired,
-  deleteTicket: PropTypes.func.isRequired
 }
 
 export default Kanban
