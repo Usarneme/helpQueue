@@ -1,14 +1,60 @@
-import { ImTicket } from 'react-icons/im';
+import { useFirebase } from 'react-redux-firebase'
+
+import { Link } from 'react-router-dom'
+import { ImTicket } from 'react-icons/im'
+import { BiLogIn } from 'react-icons/bi'
 
 function Navbar() {
+  const firebase = useFirebase()
+  const auth = firebase.auth()
+
+  const doSignOut = async () => {
+    try {
+      const res = await firebase.auth().signOut()
+      console.log('success! signed out', res)
+    } catch (err) {
+      alert("ERROR SIGNING OUT")
+      console.error(err)
+    }
+  }
+
+  const navbarStyles = {
+    display: 'flex',
+    padding: '11px',
+    alignItems: 'center',
+    borderBottom: '2px solid gray',
+    justifyContent: 'space-between',
+    background: 'rgba(255,255,255,0.5)'
+  }
+
   return (
-    <div style={{ display: 'flex', padding: '11px', alignItems: 'center', borderBottom: '2px solid gray', justifyContent: 'center', background: 'rgba(255,255,255,0.5)' }}>
-      <a href="/" style={{ display: 'flex', alignItems: 'center' }}>
+    <div style={navbarStyles}>
+      <Link to="/"
+        style={{ display: 'flex', alignItems: 'center' }}>
         <ImTicket alt='a ticket' style={{ fontSize: '60px' }} />
         <h1 style={{ paddingLeft: '10px' }}>Ticket Queue</h1>
-      </a>
+      </Link>
+      <Link to="/tickets"
+        style={{ display: 'flex', alignItems: 'center' }}>
+        <BiLogIn alt='door with an arrow' style={{ fontSize: '60px' }} />
+        <h1 style={{ paddingLeft: '10px' }}>Tickets</h1>
+      </Link>
+      { (auth.currentUser === null) ?
+        <Link to="/login"
+          style={{ display: 'flex', alignItems: 'center' }}>
+          <BiLogIn alt='door with an arrow' style={{ fontSize: '60px' }} />
+          <h1 style={{ paddingLeft: '10px' }}>Login</h1>
+        </Link>
+        :
+        <a href="/"
+          onClick={doSignOut}
+          style={{ display: 'flex', alignItems: 'center' }}>
+          <BiLogIn alt='door with an arrow' style={{ fontSize: '60px' }} />
+          <h1 style={{ paddingLeft: '10px' }}>Logout</h1>
+        </a>
+      }
     </div>
   )
 }
 
-export default Navbar;
+export default Navbar

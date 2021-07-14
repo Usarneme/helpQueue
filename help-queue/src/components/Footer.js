@@ -14,7 +14,7 @@ function Footer() {
       <ImTicket alt='a ticket' style={{ fontSize: '30px' }} />
       <h3>Ticket Queue</h3>
       <span>&nbsp;-&nbsp;</span>
-      <p>&copy; 2021 Nick & Tom</p>
+      <p>&copy; 2021 Tom/Usarneme</p>
     </div>
   )
 }

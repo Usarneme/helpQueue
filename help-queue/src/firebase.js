@@ -1,6 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/database'
 import 'firebase/firestore'
+import 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FB_API_KEY,
@@ -14,5 +15,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig)
 firebase.firestore()
+// use the default user's language for recaptcha auth
+// firebase.auth().useDeviceLanguage()
 
 export default firebase
