@@ -1,22 +1,8 @@
-import { useFirebase } from 'react-redux-firebase'
-
 import { Link } from 'react-router-dom'
 import { ImTicket } from 'react-icons/im'
 import { BiLogIn } from 'react-icons/bi'
 
 function Navbar() {
-  const firebase = useFirebase()
-  const auth = firebase.auth()
-
-  const doSignOut = async () => {
-    try {
-      const res = await firebase.auth().signOut()
-      console.log('success! signed out', res)
-    } catch (err) {
-      alert("ERROR SIGNING OUT")
-      console.error(err)
-    }
-  }
 
   const navbarStyles = {
     display: 'flex',
@@ -39,20 +25,11 @@ function Navbar() {
         <BiLogIn alt='door with an arrow' style={{ fontSize: '60px' }} />
         <h1 style={{ paddingLeft: '10px' }}>Tickets</h1>
       </Link>
-      { (auth.currentUser === null) ?
-        <Link to="/login"
-          style={{ display: 'flex', alignItems: 'center' }}>
-          <BiLogIn alt='door with an arrow' style={{ fontSize: '60px' }} />
-          <h1 style={{ paddingLeft: '10px' }}>Login</h1>
-        </Link>
-        :
-        <a href="/"
-          onClick={doSignOut}
-          style={{ display: 'flex', alignItems: 'center' }}>
-          <BiLogIn alt='door with an arrow' style={{ fontSize: '60px' }} />
-          <h1 style={{ paddingLeft: '10px' }}>Logout</h1>
-        </a>
-      }
+      <Link to="/account"
+        style={{ display: 'flex', alignItems: 'center' }}>
+        <BiLogIn alt='door with an arrow' style={{ fontSize: '60px' }} />
+        <h1 style={{ paddingLeft: '10px' }}>Account</h1>
+      </Link>
     </div>
   )
 }

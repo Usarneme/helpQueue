@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 // Pages
 import Home from './pages/Home'
-import Signin from './pages/Signin'
+import Account from './pages/Account'
 import Kanban from './pages/Kanban'
 
 // Components
@@ -15,8 +15,8 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route path='/login'>
-            <Signin />
+          <Route path='/account'>
+            <Account />
           </Route>
           <Route path='/tickets'>
             <Kanban />

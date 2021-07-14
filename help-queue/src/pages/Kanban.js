@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 // Hook for connecting Firebase+Redux for getting real-time data updates
 import { useSelector } from 'react-redux'
-import { useFirebase, useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
+import { useFirebase, useFirestoreConnect, isLoaded } from 'react-redux-firebase'
 
 import { SiTodoist } from 'react-icons/si'
 import { GiProgression } from 'react-icons/gi'
