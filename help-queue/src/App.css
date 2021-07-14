@@ -84,3 +84,21 @@ h4 {
 .App {
   text-align: center;
 }
+
+.container {
+  min-height: 68vh;
+  max-width: 999px;
+  margin: 0 auto;
+}
+
+.linkStyles {
+  border-bottom: 1px solid black;
+  cursor: pointer;
+  background: rgba(255,255,255,0.15);
+  padding: 22px;
+  margin-top: 22px;
+}
+
+input {
+  min-height: 56.5px;
+}

@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useFirebase, isLoaded } from 'react-redux-firebase'
-// import firebase from 'firebase/app'
+
+import Header from './../components/Header'
+import Footer from './../components/Footer'
 
 function Account() {
   const history = useHistory()
@@ -52,52 +54,73 @@ function Account() {
     setPassword("")
   }
 
+  const accountStyles = {
+    marginTop: '42px',
+    background: 'rgba(255,255,255,0.2)',
+    padding: '42px',
+    borderRadius: '5px'
+  }
+
   if (!isLoaded(auth)) {
     return <div>Loading...</div>
   }
 
   if (isLoaded(auth) && (auth.currentUser === null)) {
     return (
-      <div>
-        <div>
-          <h2>Sign In</h2>
-          <form onSubmit={doSignIn}>
-          <input
-              onChange={e => setEmail(e.target.value)}
-              type='email'
-              name='email'
-              placeholder='email' />
+      <>
+        <div className='container'>
+          <Header title='Account Page' />
+          <div style={accountStyles} >
+            <h2>Sign In</h2>
+            <form onSubmit={doSignIn}>
             <input
-              onChange={e => setPassword(e.target.value)}
-              type='password'
-              name='password'
-              placeholder='password' />
-            <button type='submit'>Sign In</button>
-          </form>
+                required='required'
+                onChange={e => setEmail(e.target.value)}
+                type='email'
+                name='email'
+                placeholder='email' />
+              <input
+                required='required'
+                onChange={e => setPassword(e.target.value)}
+                type='password'
+                name='password'
+                placeholder='password' />
+              <button className='linkStyles' type='submit'>Sign In</button>
+            </form>
+          </div>
+          <div style={accountStyles} >
+            <h2>Register Account</h2>
+            <form onSubmit={e => doSignUp(e)}>
+              <input
+                required='required'
+                onChange={e => setEmail(e.target.value)}
+                type='email'
+                name='email'
+                placeholder='email' />
+              <input
+                required='required'
+                onChange={e => setPassword(e.target.value)}
+                type='password'
+                name='password'
+                placeholder='password' />
+              <button className='linkStyles' type='submit'>Register</button>
+            </form>
+          </div>
         </div>
-        <div>
-          <h2>Register Account</h2>
-          <form onSubmit={e => doSignUp(e)}>
-            <input
-              onChange={e => setEmail(e.target.value)}
-              type='email'
-              name='email'
-              placeholder='email' />
-            <input
-              onChange={e => setPassword(e.target.value)}
-              type='password'
-              name='password'
-              placeholder='password' />
-            <button type='submit'>Register</button>
-          </form>
-        </div>
-      </div>
+        <Footer />
+      </>
     )
   }
 
   if (isLoaded(auth) && (auth.currentUser !== null)) {
     return (
-      <button onClick={doSignOut}>Sign Out</button>
+      <>
+        <div className='container'>
+          <Header title={`Account Page - ${auth.currentUser.email}`} />
+          <button className='linkStyles' onClick={doSignOut}>Sign Out</button>
+        </div>
+        <Footer />
+      </>
     )
   }
 }

@@ -22,17 +22,19 @@ function NewTicketForm() {
   return (
     <form onSubmit={e => formSubmissionHandler(e)}>
       <input
+        required='required'
         type="text"
         name="title"
         placeholder="title"
         value={title}
         onChange={e => setTitle(e.target.value)} />
       <input
+        required='required'
         type="text"
         name="description"
         placeholder="description"
         value={description} onChange={e => setDescription(e.target.value)} />
-      <button type="submit">Add new ticket</button>
+      <button className='linkStyles' type="submit">Add new ticket</button>
     </form>
   )
 }

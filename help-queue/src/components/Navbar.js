@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ImTicket } from 'react-icons/im'
 import { BiLogIn } from 'react-icons/bi'
+import { VscChecklist } from 'react-icons/vsc'
 
 function Navbar() {
 
@@ -17,18 +18,18 @@ function Navbar() {
     <div style={navbarStyles}>
       <Link to="/"
         style={{ display: 'flex', alignItems: 'center' }}>
-        <ImTicket alt='a ticket' style={{ fontSize: '60px' }} />
-        <h1 style={{ paddingLeft: '10px' }}>Ticket Queue</h1>
+        <ImTicket alt='a ticket' style={{ fontSize: '45px' }} />
+        <h3 style={{ paddingLeft: '10px' }}>Ticket Queue</h3>
       </Link>
       <Link to="/tickets"
         style={{ display: 'flex', alignItems: 'center' }}>
-        <BiLogIn alt='door with an arrow' style={{ fontSize: '60px' }} />
-        <h1 style={{ paddingLeft: '10px' }}>Tickets</h1>
+        <VscChecklist alt='door with an arrow' style={{ fontSize: '45px' }} />
+        <h3 style={{ paddingLeft: '10px' }}>Tickets</h3>
       </Link>
       <Link to="/account"
         style={{ display: 'flex', alignItems: 'center' }}>
-        <BiLogIn alt='door with an arrow' style={{ fontSize: '60px' }} />
-        <h1 style={{ paddingLeft: '10px' }}>Account</h1>
+        <BiLogIn alt='door with an arrow' style={{ fontSize: '45px' }} />
+        <h3 style={{ paddingLeft: '10px' }}>Account</h3>
       </Link>
     </div>
   )
